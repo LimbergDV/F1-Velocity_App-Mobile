@@ -1,4 +1,4 @@
-package com.limbergdv.f1_velocity_app.ui.theme
+package com.limbergdv.f1_velocity_app.core.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

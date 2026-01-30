@@ -11,21 +11,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.limbergdv.f1_velocity_app.ui.theme.F1VelocityAPPTheme
+import com.limbergdv.f1_velocity_app.core.ui.theme.F1VelocityAPPTheme
+import com.limbergdv.f1_velocity_app.features.fomula1.presentation.F1HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            F1VelocityAPPTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            F1HomeScreen()
         }
     }
 }

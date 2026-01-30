@@ -1,6 +1,5 @@
-package com.limbergdv.f1_velocity_app.ui.theme
+package com.limbergdv.f1_velocity_app.core.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
