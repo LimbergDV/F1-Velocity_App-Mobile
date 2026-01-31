@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.limbergdv.f1_velocity_app.R
 
 enum class NavigationItem {
     HOME,
@@ -36,7 +37,7 @@ fun BottomNavigationBar(
             onClick = { onItemSelected(NavigationItem.HOME) },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Home,
+                    painter = painterResource(id = R.drawable.gome_icon),
                     contentDescription = "Home",
                     modifier = Modifier.size(24.dp)
                 )
@@ -55,7 +56,7 @@ fun BottomNavigationBar(
             onClick = { onItemSelected(NavigationItem.DRIVERS) },
             icon = {
                 Icon(
-                    painter = painterResource(id = android.R.drawable.ic_menu_myplaces),
+                    painter = painterResource(id = R.drawable.hellmet_icon),
                     contentDescription = "Drivers",
                     modifier = Modifier.size(24.dp)
                 )
@@ -74,7 +75,7 @@ fun BottomNavigationBar(
             onClick = { onItemSelected(NavigationItem.TEAMS) },
             icon = {
                 Icon(
-                    painter = painterResource(id = android.R.drawable.ic_menu_compass),
+                    painter = painterResource(id = R.drawable.rece_icon),
                     contentDescription = "Teams",
                     modifier = Modifier.size(24.dp)
                 )
@@ -93,7 +94,7 @@ fun BottomNavigationBar(
             onClick = { onItemSelected(NavigationItem.CIRCUITS) },
             icon = {
                 Icon(
-                    painter = painterResource(id = android.R.drawable.ic_menu_info_details),
+                    painter = painterResource(id = R.drawable.road_icon),
                     contentDescription = "Circuits",
                     modifier = Modifier.size(24.dp)
                 )
