@@ -62,4 +62,6 @@ dependencies {
     implementation(libs.com.squareup.retrofit2.retrofit)        // Retrofit
     implementation(libs.com.squareup.retrofit2.converter.json)  // JSON
     implementation(libs.androidx.ui)
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.compose.ui:ui-text-google-fonts")
 }
