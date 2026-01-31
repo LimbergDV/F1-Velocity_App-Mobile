@@ -4,8 +4,10 @@ import android.content.Context
 import com.limbergdv.f1_velocity_app.core.network.OpenF1Api
 import com.limbergdv.f1_velocity_app.features.formula1.data.repositories.CircuitsRepositoryImpl
 import com.limbergdv.f1_velocity_app.features.formula1.data.repositories.DriversRepositoryImpl
+import com.limbergdv.f1_velocity_app.features.formula1.data.repositories.TeamsRepositoryImpl
 import com.limbergdv.f1_velocity_app.features.formula1.domain.repositories.CircuitsRepository
 import com.limbergdv.f1_velocity_app.features.formula1.domain.repositories.DriversRepository
+import com.limbergdv.f1_velocity_app.features.formula1.domain.repositories.TeamsRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -26,5 +28,9 @@ class AppContainer(context: Context) {
 
     val circuitsRepository: CircuitsRepository by lazy {
         CircuitsRepositoryImpl(openF1Api)
+    }
+
+    val teamsRepository: TeamsRepository by lazy {
+        TeamsRepositoryImpl(openF1Api)
     }
 }
