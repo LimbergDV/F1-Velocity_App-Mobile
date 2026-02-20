@@ -19,22 +19,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.BottomNavigationBar
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.CircuitCard
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.NavigationItem
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.CircuitsViewModel
-import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.CircuitsViewModelFactory
 
 @Composable
 fun CircuitsScreen(
-    factory: CircuitsViewModelFactory,
+    viewModel: CircuitsViewModel = hiltViewModel(),
     onNavigateToHome: () -> Unit = {},
     onNavigateToDrivers: () -> Unit = {},
     onNavigateToTeams: () -> Unit = {}
 ) {
-    val viewModel: CircuitsViewModel = viewModel(factory = factory)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -47,9 +45,7 @@ fun CircuitsScreen(
                         NavigationItem.HOME -> onNavigateToHome()
                         NavigationItem.DRIVERS -> onNavigateToDrivers()
                         NavigationItem.TEAMS -> onNavigateToTeams()
-                        NavigationItem.CIRCUITS -> {
-                            // Ya estamos en circuits
-                        }
+                        NavigationItem.CIRCUITS -> {}
                     }
                 }
             )
@@ -92,7 +88,6 @@ fun CircuitsScreen(
                                     .padding(horizontal = 16.dp, vertical = 8.dp)
                             )
                         }
-
                         items(uiState.circuits) { circuit ->
                             CircuitCard(
                                 meetingName = circuit.meetingName,

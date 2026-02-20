@@ -5,8 +5,9 @@ import com.limbergdv.f1_velocity_app.features.formula1.data.datasources.remote.m
 import com.limbergdv.f1_velocity_app.features.formula1.data.datasources.remote.model.DriverDto
 import com.limbergdv.f1_velocity_app.features.formula1.domain.entities.Driver
 import com.limbergdv.f1_velocity_app.features.formula1.domain.repositories.DriversRepository
+import javax.inject.Inject
 
-class DriversRepositoryImpl(
+class DriversRepositoryImpl @Inject constructor(
     private val api: OpenF1Api
 ) : DriversRepository {
 
@@ -14,7 +15,6 @@ class DriversRepositoryImpl(
         val response = api.getDrivers()
         val driversList: List<DriverDto> = response.body() ?: emptyList()
 
-        // Filtrar pilotos únicos y tomar solo 20
         val seenNumbers = mutableSetOf<Int>()
         val uniqueDrivers = mutableListOf<Driver>()
 

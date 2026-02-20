@@ -19,22 +19,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.BottomNavigationBar
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.NavigationItem
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.TeamCard
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.TeamsViewModel
-import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.TeamsViewModelFactory
 
 @Composable
 fun TeamsScreen(
-    factory: TeamsViewModelFactory,
+    viewModel: TeamsViewModel = hiltViewModel(),
     onNavigateToHome: () -> Unit = {},
     onNavigateToDrivers: () -> Unit = {},
     onNavigateToCircuits: () -> Unit = {}
 ) {
-    val viewModel: TeamsViewModel = viewModel(factory = factory)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -46,8 +44,7 @@ fun TeamsScreen(
                     when (item) {
                         NavigationItem.HOME -> onNavigateToHome()
                         NavigationItem.DRIVERS -> onNavigateToDrivers()
-                        NavigationItem.TEAMS -> {
-                        }
+                        NavigationItem.TEAMS -> {}
                         NavigationItem.CIRCUITS -> onNavigateToCircuits()
                     }
                 }
@@ -91,7 +88,6 @@ fun TeamsScreen(
                                     .padding(horizontal = 16.dp, vertical = 8.dp)
                             )
                         }
-
                         items(uiState.teams) { team ->
                             TeamCard(
                                 teamName = team.teamName,

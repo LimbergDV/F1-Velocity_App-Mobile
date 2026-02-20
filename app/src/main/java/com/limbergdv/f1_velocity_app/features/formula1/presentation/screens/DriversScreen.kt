@@ -19,22 +19,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.BottomNavigationBar
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.DriverCard
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.NavigationItem
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.DriversViewModel
-import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.DriversViewModelFactory
 
 @Composable
 fun DriversScreen(
-    factory: DriversViewModelFactory,
+    viewModel: DriversViewModel = hiltViewModel(),
     onNavigateToHome: () -> Unit = {},
     onNavigateToTeams: () -> Unit = {},
     onNavigateToCircuits: () -> Unit = {}
 ) {
-    val viewModel: DriversViewModel = viewModel(factory = factory)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -45,9 +43,7 @@ fun DriversScreen(
                 onItemSelected = { item ->
                     when (item) {
                         NavigationItem.HOME -> onNavigateToHome()
-                        NavigationItem.DRIVERS -> {
-                            // Ya estamos en drivers
-                        }
+                        NavigationItem.DRIVERS -> {}
                         NavigationItem.TEAMS -> onNavigateToTeams()
                         NavigationItem.CIRCUITS -> onNavigateToCircuits()
                     }
@@ -92,7 +88,6 @@ fun DriversScreen(
                                     .padding(horizontal = 16.dp, vertical = 8.dp)
                             )
                         }
-
                         items(uiState.drivers) { driver ->
                             DriverCard(
                                 firstName = driver.firstName,

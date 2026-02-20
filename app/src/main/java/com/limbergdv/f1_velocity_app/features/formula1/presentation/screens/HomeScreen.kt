@@ -7,8 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.BottomNavigationBar
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.HomeContent
 import com.limbergdv.f1_velocity_app.features.formula1.presentation.components.NavigationItem
@@ -16,7 +16,7 @@ import com.limbergdv.f1_velocity_app.features.formula1.presentation.viewmodels.H
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = viewModel(),
+    viewModel: HomeViewModel = hiltViewModel(),
     onNavigateToDrivers: () -> Unit = {},
     onNavigateToTeams: () -> Unit = {},
     onNavigateToCircuits: () -> Unit = {}
@@ -30,9 +30,7 @@ fun HomeScreen(
                 selectedItem = NavigationItem.HOME,
                 onItemSelected = { item ->
                     when (item) {
-                        NavigationItem.HOME -> {
-                            // Ya estamos en home, no hacer nada
-                        }
+                        NavigationItem.HOME -> {}
                         NavigationItem.DRIVERS -> onNavigateToDrivers()
                         NavigationItem.TEAMS -> onNavigateToTeams()
                         NavigationItem.CIRCUITS -> onNavigateToCircuits()

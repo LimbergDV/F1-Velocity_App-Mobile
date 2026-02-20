@@ -5,17 +5,16 @@ import com.limbergdv.f1_velocity_app.features.formula1.data.datasources.local.Te
 import com.limbergdv.f1_velocity_app.features.formula1.data.datasources.remote.model.DriverDto
 import com.limbergdv.f1_velocity_app.features.formula1.domain.entities.Team
 import com.limbergdv.f1_velocity_app.features.formula1.domain.repositories.TeamsRepository
+import javax.inject.Inject
 
-class TeamsRepositoryImpl(
+class TeamsRepositoryImpl @Inject constructor(
     private val api: OpenF1Api
 ) : TeamsRepository {
 
     override suspend fun getTeams(): List<Team> {
-        // Obtener pilotos de la API
         val response = api.getDrivers()
         val driversList: List<DriverDto> = response.body() ?: emptyList()
 
-        // Extraer equipos únicos de los pilotos
         val seenTeams = mutableSetOf<String>()
         val uniqueTeams = mutableListOf<Team>()
 
@@ -23,7 +22,6 @@ class TeamsRepositoryImpl(
             val driver: DriverDto = driversList[i]
             val teamName = driver.teamName ?: continue
 
-            // Solo agregar si no hemos visto este equipo antes
             if (seenTeams.add(teamName)) {
                 uniqueTeams.add(
                     Team(
